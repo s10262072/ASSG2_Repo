@@ -3,7 +3,17 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Anchor
+  - Burger
+  - Bottom Bun
+  - Cheese
+  - Lettuce
+  - Patty
+  - Top Bun
+  - Patty 2
+  - Bottom Bun 2
+  - Cleaning
   layers:
   - Default
   - TransparentFX
