@@ -23,7 +23,7 @@ public class AuthManager : MonoBehaviour
     public GameObject signInBtn;
     public GameObject signOutBtn;
     public GameObject forgotPasswordBtn;
-    public TextMeshProUGUI errorMsgContent;
+    //public TextMeshProUGUI errorMsgContent;
 
     private void Awake()
     {
@@ -38,7 +38,7 @@ public class AuthManager : MonoBehaviour
 
         if (ValidateEmail(email) && ValidatePassword(password))
         {
-            errorMsgContent.gameObject.SetActive(false); // Hide error initially
+            //errorMsgContent.gameObject.SetActive(false); // Hide error initially
 
             FirebaseUser newPlayer = await SignUpNewUserOnly(email, password);
 
@@ -51,14 +51,14 @@ public class AuthManager : MonoBehaviour
             }
             else
             {
-                errorMsgContent.text = "Account creation failed. Please check your details.";
-                errorMsgContent.gameObject.SetActive(true);
+                // errorMsgContent.text = "Account creation failed. Please check your details.";
+                // errorMsgContent.gameObject.SetActive(true);
             }
         }
         else
         {
-            errorMsgContent.text = "Error in signing up: Invalid Email or Password.";
-            errorMsgContent.gameObject.SetActive(true);
+            // errorMsgContent.text = "Error in signing up: Invalid Email or Password.";
+            // errorMsgContent.gameObject.SetActive(true);
         }
     }
 
@@ -77,8 +77,8 @@ public class AuthManager : MonoBehaviour
         catch (FirebaseException ex)
         {
             Debug.LogError($"Firebase SignUp Error: {ex.Message}");
-            errorMsgContent.text = HandleSignUpError(ex);
-            errorMsgContent.gameObject.SetActive(true);
+            // errorMsgContent.text = HandleSignUpError(ex);
+            // errorMsgContent.gameObject.SetActive(true);
         }
 
         return newPlayer;
@@ -130,13 +130,13 @@ public class AuthManager : MonoBehaviour
             {
                 if (task.IsFaulted || task.IsCanceled)
                 {
-                    string errorMsg = HandleSignInError(task);
-                    errorMsgContent.text = errorMsg;
-                    errorMsgContent.gameObject.SetActive(true);
+                    // string errorMsg = HandleSignInError(task);
+                    // errorMsgContent.text = errorMsg;
+                    // errorMsgContent.gameObject.SetActive(true);
                 }
                 else if (task.IsCompleted)
                 {
-                    errorMsgContent.gameObject.SetActive(false);
+                    //errorMsgContent.gameObject.SetActive(false);
                     FirebaseUser currentPlayer = task.Result.User;
                     Debug.LogFormat("Welcome to the game: {0} {1}", currentPlayer.UserId, currentPlayer.Email);
                 }
@@ -144,8 +144,8 @@ public class AuthManager : MonoBehaviour
         }
         else
         {
-            errorMsgContent.text = "Error in signing in: Invalid Email or Password.";
-            errorMsgContent.gameObject.SetActive(true);
+            // errorMsgContent.text = "Error in signing in: Invalid Email or Password.";
+            // errorMsgContent.gameObject.SetActive(true);
         }
     }
 
